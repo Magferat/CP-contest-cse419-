@@ -1,0 +1,17 @@
+C++ DS : theory w implementation
+
+1. Vector, add element, random acc
+
+2. Set, Multiset, Pair(), add element, unordered set
+
+3. map, unorder map
+
+4. priority queue, heap, set vs priority queue
+
+5. stack, set vs stack
+
+6. deque,
+
+
+
+extra : binary search,
