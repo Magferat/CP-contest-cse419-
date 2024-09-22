@@ -10,7 +10,7 @@ a,b = list(map(int, sys.stdin.readline().split()))
 x,y = a,b
 while a > 0 :
     t = a
-    a = b % t
+    a = b % t 
     b = t
 gcd = b
 # LCM

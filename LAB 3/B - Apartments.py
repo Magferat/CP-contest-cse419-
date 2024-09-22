@@ -1,31 +1,37 @@
-n,m,k = [int(i) for i in input().split()]
+import sys
 
-dem = [int(i) for i in input().split()]
-sup = [int(i) for i in input().split()]
+n,m,k = list(map(int, sys.stdin.readline().split()))
 
+arr_n = list(map(int, sys.stdin.readline().split()))
+arr_m = list(map(int, sys.stdin.readline().split()))
+arr_n.sort()
+arr_m.sort()
+print(arr_n)
+print(arr_m)
 
-d,s = 0, 0
+x = 0
+n -= 1
 
-sum = 0
+available = [0]*10000000
 
-
-while s < m and d <n :
-    # print(sup[s])
-    a,b = sup[s] -k, sup[s] + k
-
-    if a == dem[d] or b == dem[d] :
-        sup.pop(s)
-        dem.pop(d)
-        s += 1
-        d += 1
-    else :
-        if d + 1 == n :
-            d = 0
-            s += 1
-        else:
-            d += 1
+for i in arr_m :
+    available[i] += 1
+    print(available[i],i)
 
 
-print(sum)
 
+for i in arr_n :
+    if x <= m :
+        if available[i] >= 1 :
+            x += 1
+            available[i] -= 1
+        elif available[i-k] >= 1 :
+            x += 1
+            available[i-k] -= 1
 
+        elif available[i+k] >= 1 :
+            x += 1
+            available[i+k] -= 1
+        print(i, i-k, i+k)
+
+sys.stdout.write(str(x)+"\n")
