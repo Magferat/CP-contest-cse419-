@@ -1,57 +1,69 @@
 import sys
 
 t = int(sys.stdin.readline())
-
-enter = []
+n = t
+entry = []
 leave = []
-
+all = []
 while t > 0:
     e, l = list(map(int, sys.stdin.readline().split()))
-    enter.append(e)
+    entry.append(e)
     leave.append(l)
+    all.append(e)
+    all.append(l)
     t -= 1
-t = len(enter)
-enter.sort()
+entry.sort()
 leave.sort()
-
-# print(enter)
+all.sort()
+# print(entry)
 # print(leave)
-
-all = ['N'] * (leave[-1] + 1)
-# print(all)
-all = {}
-i = 0
-
-while i < t:
-    if enter[i] not in all:
-        all[enter[i]] = ["E", 1]
-    else :
-        s, c = all[enter[i]][0], all[enter[i]][1]
-        all[enter[i]] = [s,c]
-    all[leave[i]] = 'L'
-    i += 1
-
 # print(all)
 
-count = [0] * len(all)
+e, l, c = 0,0, 0
+guest = 0
+max = 0
+while c < 2*n :
 
-j = 1
+    if e < n and entry[e] == all[c] :
+        guest += 1
+        e += 1
+    elif l < n and leave[l] == all[c] :
+        guest -= 1
+        l += 1
 
-while j < len(all):
+    if guest > max :
+        max = guest
 
-    c = count[j - 1]
-    if all[j] == "E":
-        c += 1
-        count[j] = c
 
-    elif all[j] == "L":
-        c -= 1
-        count[j] = c
+    # print(all[c])
+    c += 1
 
-    else:
-        count[j] = c
 
-    j += 1
-count.sort()
+sys.stdout.write(str(max))
 
-sys.stdout.write(str(count[-1]) + "\n")
+
+#
+# finish = leave[-1]
+# current = entry[0]
+# guest = [0]* (leave[-1]+1)
+#
+# # print(finish,current,guest)
+# e, l = 0,0
+# max = 0
+# while current <= finish:
+#     guest[current] = guest[current - 1]
+#     # print(current,e,l, guest)
+#     if e < len(entry) and current == entry[e] :
+#         guest[current] += 1
+#         e += 1
+#     if l < len(leave) and current == leave[l] :
+#         guest[current]  -= 1
+#         l += 1
+#     if guest[current] > max :
+#         max = guest[current]
+#     current += 1
+#
+# # print(finish,current,guest)
+# sys.stdout.write(str(max))
+
+

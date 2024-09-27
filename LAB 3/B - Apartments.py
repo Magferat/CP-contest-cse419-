@@ -6,32 +6,28 @@ arr_n = list(map(int, sys.stdin.readline().split()))
 arr_m = list(map(int, sys.stdin.readline().split()))
 arr_n.sort()
 arr_m.sort()
-print(arr_n)
-print(arr_m)
-
-x = 0
-n -= 1
-
-available = [0]*10000000
-
-for i in arr_m :
-    available[i] += 1
-    print(available[i],i)
 
 
+count = 0
 
-for i in arr_n :
-    if x <= m :
-        if available[i] >= 1 :
-            x += 1
-            available[i] -= 1
-        elif available[i-k] >= 1 :
-            x += 1
-            available[i-k] -= 1
+i, j = 0,0
 
-        elif available[i+k] >= 1 :
-            x += 1
-            available[i+k] -= 1
-        print(i, i-k, i+k)
+while i < m and j < n:
 
-sys.stdout.write(str(x)+"\n")
+    up = arr_m[i] + k
+    low = arr_m[i] - k
+
+    app = arr_n[j]
+    if low <= app <= up :
+        j += 1
+        i += 1
+        count += 1
+    else :
+        if up < app :
+            i += 1
+        if low > app :
+            j += 1
+
+print(count)
+
+
